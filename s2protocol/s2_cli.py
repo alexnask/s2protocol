@@ -354,18 +354,18 @@ def main():
     # Print game events and/or game events stats
     if args.all or args.gameevents:
         contents = read_contents(archive, 'replay.game.events')
-        map(process_event, protocol.decode_replay_game_events(contents))
+        list(map(process_event, protocol.decode_replay_game_events(contents)))
 
     # Print message events
     if args.all or args.messageevents:
         contents = read_contents(archive, 'replay.message.events')
-        map(process_event, protocol.decode_replay_message_events(contents))
+        list(map(process_event, protocol.decode_replay_message_events(contents)))
 
     # Print tracker events
     if args.all or args.trackerevents:
         if hasattr(protocol, 'decode_replay_tracker_events'):
             contents = read_contents(archive, 'replay.tracker.events')
-            map(process_event, protocol.decode_replay_tracker_events(contents))
+            list(map(process_event, protocol.decode_replay_tracker_events(contents)))
 
     # Print attributes events
     if args.all or args.attributeevents or args.attributeparse:
